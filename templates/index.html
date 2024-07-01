@@ -4,203 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayHere Checkout</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Document</title>
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="row mt-5">
-            <div class="col-lg-12">
-                <h4>Checkout API with Javascript SDK</h4>
-                <p>PayHere Checkout API lets you charge one time Payment from the customers. After Payment Complete
-                    Payment
-                    Notification details will send you to your notify_url.
-                    If you're new to Checkout API, please refer
-                    <a href="https://support.payhere.lk/api-&-mobile-sdk/payhere-checkout">Checkout API</a>
-                    introduction first.
-                </p>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-lg-7">
-                <form action="{{ url_for('checkout') }}" method="post" id="javascript-form">
-                    <div class="form-group row">
-                        <label for="merchant_id" class="col-sm-2 col-form-label">Merchant ID</label>
-                        <div class="col-sm-10">
-                            <input type="hidden" id="preapprove" name="preapprove" value="true">
-                            <input type="text" class="form-control" id="merchant_id" name="merchant_id" placeholder="">
-                            <small><em>You can leave this field.</em></small>
-                        </div>
-                    </div>
-                    <input type="hidden" name="return_url" value="http://localhost:5000/checkout-response">
-                    <input type="hidden" name="cancel_url" value="http://localhost:5000/checkout-response">
-                    <input type="hidden" name="notify_url" value="http://localhost:5000/checkout-response">
-                    <input type="hidden" name="custom_2" value="{{ session_id }}">
-                    <div class="form-group row">
-                        <label for="first_name" class="col-sm-2 col-form-label">First Name</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="">
-                        </div>
-                        <label for="last_name" class="col-sm-2 col-form-label">Last Name</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-2 col-form-label">E-mail</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="email" name="email" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="phone" class="col-sm-2 col-form-label">Phone</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="address" class="col-sm-2 col-form-label">Address</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="address" name="address" placeholder="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="city" class="col-sm-2 col-form-label">City</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="city" name="city" placeholder=""
-                                value="Colombo">
-                        </div>
-                        <label for="country" class="col-sm-2 col-form-label">Country</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="country" name="country" placeholder=""
-                                value="Sri Lanka">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="order_id" class="col-sm-2 col-form-label">Order ID</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="order_id" name="order_id" placeholder=""
-                                value="{{ order_id }}" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="items" class="col-sm-2 col-form-label">Items</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="items" name="items" placeholder=""
-                                value="Sample Subscription Item" />
-                            <em><small>Optional</small></em>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="currency" class="col-sm-2 col-form-label">Currency</label>
-                        <div class="col-sm-10">
-                            <select name="currency" id="currency" class="form-control">
-                                <option value="USD">USD</option>
-                                <option value="LKR">LKR</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="currency" class="col-sm-2 col-form-label">Amount</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="amount" name="amount" placeholder=""
-                                value="100.00" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12 text-right">
-                            <input type="hidden" class="form-control" id="hash" name="hash" placeholder="" value="" />
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-5 bg-dark text-white">
-                <h3>Preview</h3>
-                <div style="display: none" id="payment_div"><a href="" target="_blank">View Payment Details</a></div>
-                <pre class="bg-dark text-white">
-                <div id="form_preview"></div>
-                </pre>
-            </div>
-        </div>
+
+    <div hidden id="hidden-data" merchant-id="1227403" first-name="Sampath" last-name="Kumara"
+        user-email="zesta5j7k@gmail.com" user-phone="+94777662700" user-school="NiggerSchool" user-paid-amount="1800">
     </div>
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/md5.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="https://sandbox.payhere.lk/lib/payhere.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('input').change(function () {
-                $('.text-danger').html('');
 
-                generateHash('#javascript-form', '#hash');
+    <button id="payhere-payment">Pay Here</button>
 
-                var jsonString = $("form").serializeArray();
-                var array = {};
-                $.each(jsonString, function (i, row) {
-                    if (row.name != 'custom_2')
-                        array[row.name] = row.value;
-                });
-                var json = JSON.stringify(array, null, 4);
+    <script src="https://www.payhere.lk/lib/payhere.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
-                $("#form_preview").html(json);
-            });
-
-            generateHash('#javascript-form', '#hash');
-            $('input').change();
-        });
-
-        function generateHash(form_id, hash_id) {
-            var msg = "";
-            var hash = $(hash_id);
-            var valid = true;
-            var form = $(form_id).serializeArray();
-
-            for (var i = 0; i < form.length; i++) {
-                if (form[i].name == 'merchant_id') {
-                    if (form[i].value == '') {
-                        form[i].value = '1211149';
-                    }
-                }
-
-                if (form[i].name != 'currency' && form[i].name != 'custom_2' && form[i].name != 'address' && form[i].value == '') {
-                    var input = $("input[name=" + form[i].name + "]");
-                    var label = $("label[for=" + form[i].name + "]").html();
-                    msg = msg + "<br>" + label;
-                    valid = false;
-                }
-            }
-            if (!valid) {
-                $('#validation').html('Please fill the following fields' + msg);
-                hash.val('');
-                return;
-            }
-
-            //Check the phone number valid format
-            var phone = $("input[name=phone]").val();
-            var phoneno = /^\d{10}$/;
-            if (phone.match(phoneno)) { } else {
-                $('#validation').html('Phone number invalid format');
-                hash.val('');
-                return;
-            }
-
-            var msg = "";
-            for (var i = 0; i < form.length; i++) {
-                if (form[i].name == 'return_url' || form[i].name == 'cancel_url' || form[i].name == 'notify_url') {
-                    continue;
-                }
-
-                if (form[i].value != '' && form[i].name != 'custom_2') {
-                    msg = msg + form[i].value + '|';
-                }
-            }
-            msg = msg + 'payhere@123';
-            var md5 = hex_md5(msg);
-            hash.val(md5);
-        }
-    </script>
 </body>
 
 </html>
